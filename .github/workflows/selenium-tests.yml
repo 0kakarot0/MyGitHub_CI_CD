@@ -1,10 +1,10 @@
 name: Selenium Java Test
 
-on: 
-  push: 
+on:
+  push:
     branches:
       - master
-  pull_request: 
+  pull_request:
     branches:
       - master
 
@@ -17,21 +17,20 @@ jobs:
       - name: Set Up JDK
         uses: actions/setup-java@v4.4.0
         with:
-          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file.
           java-version: 17
-          distribution: 'temurin'  # You can also use 'zulu' or 'adopt'
+          distribution: 'temurin'
 
-
-      # Cache Maven dependency
+      # Cache Maven dependencies
       - name: Cache Maven Packages
         uses: actions/cache@v4.0.2
         with:
+          path: ~/.m2/repository    # Caches Maven dependencies
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven
 
-      # Install Maven dependency
-      - name: Install Maven Dependency
+      # Install Maven dependencies
+      - name: Install Maven Dependencies
         run: mvn install -DskipTests
 
       # Run Selenium Test
