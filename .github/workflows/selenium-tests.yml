@@ -13,6 +13,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Checkout repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Ensure the repository is checked out
+
       # Set up JDK
       - name: Set Up JDK
         uses: actions/setup-java@v4.4.0
