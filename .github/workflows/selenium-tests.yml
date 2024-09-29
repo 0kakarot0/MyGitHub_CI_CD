@@ -1,0 +1,44 @@
+name: Selenium Java Test
+
+on: 
+  push: 
+    branches:
+      - master
+  pull: 
+    branches:
+      - master
+
+jobs:
+  run-tests:
+    runs-on: windows-latest
+
+    steps:
+      # Set up JDK
+      - name: Set Up JDK
+        uses: actions/setup-java@v4.4.0
+        with:
+          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file.
+          java-version: 17
+
+      # Cache Maven dependency
+      - name: Cache Maven Packages
+        uses: actions/cache@v4.0.2
+        with:
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven
+
+      # Install Maven dependency
+      - name: Install Maven Dependency
+        run: mvn install -DskipTests
+
+      # Run Selenium Test
+      - name: Run Selenium Test
+        run: mvn test
+
+      # Archive test results (JUnit XML reports)
+      - name: Archive test results
+        uses: actions/upload-artifact@v3.2.1-node20
+        with:
+          name: test-results
+          path: target/surefire-reports
