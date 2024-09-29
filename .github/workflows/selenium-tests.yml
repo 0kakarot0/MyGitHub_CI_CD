@@ -19,6 +19,8 @@ jobs:
         with:
           # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file.
           java-version: 17
+          distribution: 'temurin'  # You can also use 'zulu' or 'adopt'
+
 
       # Cache Maven dependency
       - name: Cache Maven Packages
