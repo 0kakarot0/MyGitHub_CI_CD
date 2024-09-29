@@ -47,9 +47,3 @@ jobs:
         with:
           name: test-results
           path: target/surefire-reports
-
-      # Upload JUnit test results for display in the GitHub Actions UI
-      - name: Upload Test Results
-        uses: actions/upload-test-result-action@v2
-        with:
-          junit_results: target/surefire-reports/*.xml  # Path to your JUnit test result XML files
