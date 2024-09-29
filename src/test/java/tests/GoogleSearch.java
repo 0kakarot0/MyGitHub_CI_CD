@@ -12,6 +12,8 @@ public class GoogleSearch extends TestBase {
 
         searchInGoogle.enterSearchQuery("Selenium");
 
+        searchInGoogle.clickOnGoogleImage();
+
         searchInGoogle.clickOnSearchButton();
     }
 }
