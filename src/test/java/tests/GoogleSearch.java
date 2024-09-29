@@ -11,9 +11,7 @@ public class GoogleSearch extends TestBase {
         Search_In_Google searchInGoogle = new Search_In_Google(DriverManager.getDriver());
 
         searchInGoogle.enterSearchQuery("Selenium");
-
         searchInGoogle.clickOnGoogleImage();
-
         searchInGoogle.clickOnSearchButton();
     }
 }
